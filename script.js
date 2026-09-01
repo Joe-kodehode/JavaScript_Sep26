@@ -1,145 +1,156 @@
-// Lesson 1: Into to JS
+// Conditionals
 
-// Single line comment
+// Section 1: If / Else if / Else
 
-/*
-multi line
-comment
-*/
+const temperature = 15;
 
-// console.log
-// The console.log() function prints a message to the console.
-console.log("hello world");
+// console log "it's a hot day" if the temperature is 25 or over
 
-// camelCase
-// this is when we write the first word's letter in lowercase and subsequent first letters in uppercase. Used for naming Variables and Functions in JS
+if (temperature >= 25) {
+  console.log("It's a hot day");
+} else if (temperature >= 15) {
+  console.log("It's a warm day");
+} else if (temperature > 0) {
+  console.log("It's a bit chilly");
+} else {
+  console.log("it's freezing!");
+}
 
-// Variables and Data Types
+// Section 2: Logical Operators (AND &&   OR ||)
 
-// String (text)
-let exampleString = "This is a string.";
-console.log(exampleString);
+// Using && to make sure 2 conditions are true
+const age = 18;
+const hasLicense = false;
 
-// Number (Integer - whole number / float - decimals)
-let exampleNumber = 100;
-console.log(exampleNumber);
+if (age >= 18 && hasLicense) {
+  console.log("You can drive");
+} else {
+  console.log("No driving for you!");
+}
 
-// Boolean (true / false)
-let exampleTrueBoolean = true;
-let exampleFalseBoolean = false;
-console.log(exampleTrueBoolean);
-console.log(exampleFalseBoolean);
+// Using || to make sure at least one condition is true
+const day = "Hamburger";
 
-// Array (a list of values)
-let exampleArray = ["The Matrix", "Lord of the Rings", "Love Actually"];
-console.log(exampleArray);
+if (day === "Saturday" || day === "Sunday") {
+  console.log("It's the weekend");
+} else if (
+  day === "Monday" ||
+  day === "Tuesday" ||
+  day === "Wednesday" ||
+  day === "Thursday" ||
+  day === "Friday"
+) {
+  console.log("It's a weekday");
+} else {
+  console.log("Error, unknown day detected!");
+}
 
-// Arrays have Indexes representing the location of the elements in the array
-console.log(exampleArray[0]);
+// Using both && and || in the same check
 
-// Object (holds key-value pairs)
-let person = {
-  name: "Alice",
-  age: 25,
-  isStudent: true,
-};
+// Give the user a discount if they have a referral AND it's their first shop.
 
-console.log(person);
-console.log(person.isStudent);
+// Premium members ALWAYS get a discount.
 
+// if they're getting the discount, console.log("You get a discount")
+// if they're not getting a discount, console.log("Full price!")
+
+const referal = true;
+const firstShop = true;
+const premiumMember = false;
+
+if ((referal && firstShop) || premiumMember) {
+  console.log("You get a discount");
+} else {
+  console.log("No discount!");
+}
+
+// Section 3: Ternary
+
+const isMember = false;
+// let fee;
+
+// if (isMember) {
+//   fee = "$5";
+// } else {
+//   fee = "$10";
+// }
+
+const fee = isMember ? "$5" : "$10";
+
+console.log(fee);
+
+// Section 4: Switch Statements
+
+const fruit = "Kiwi";
+
+switch (fruit) {
+  case "Apple":
+    console.log("The fruit is an apple");
+    break;
+  case "Banana":
+    console.log("The fruit is a banana");
+    break;
+  case "Strawberry":
+    console.log("The fruit is strawberry");
+    break;
+  default:
+    console.log("Unknown fruit!");
+}
+
+// Use if / else if → for complex or varied conditions
+// Use switch → for one variable with many fixed values
+
+// Section 5: Truthy and Falsey values
+
+const value = "";
+
+if (value) {
+  console.log("This is true!");
+} else {
+  console.log("This is false!");
+}
+
+// True
+// A string with value
+// A positive number
+// A negative number
+// An array with values
+// An empty array
+// An object with key value pairs
+// An empty object
+
+// False
+// Empty string
+// 0
 // Undefined
-let exampleUndefined;
-console.log(exampleUndefined);
-
 // Null
-let exampleNull = null;
-console.log(exampleNull);
+// NaN (not a number)
 
-// Let & Const
-// Use "const" wherever possible. Only use "let" when a variable needs to be reassigned a new value later in the code.
-let changeableMessage = "I can change";
-changeableMessage = "I've changed!";
-console.log(changeableMessage);
+// Section 6: Template String / Template Literal
 
-const fixedMessage = "I can't change";
-// fixedMessage = "This won't end well...";
-console.log(fixedMessage);
+const firstName = "Bob";
+const lastName = "Builderson";
+const city = "Oslo";
+const country = "Norway";
 
-// Operators
-// Operators perform calculations OR comparisons.
+// const greeting =
+//   "Welcome" +
+//   " " +
+//   firstName +
+//   " " +
+//   lastName +
+//   " " +
+//   "from" +
+//   " " +
+//   city +
+//   " " +
+//   country +
+//   " " +
+//   "to my website.";
 
-// Calculation Operators
+// 1. Swap quotations for backticks
+// 2. surround variables with ${}
 
-const num1 = 12;
-const num2 = 5;
+const greeting = `Welcome ${firstName} ${lastName} from ${city} ${country} to my website`;
 
-console.log(num1 + num2); // Addition
-console.log(num1 - num2); // Subtraction
-console.log(num1 * num2); // Multiplication
-console.log(num1 / num2); // Division
-console.log(num1 % num2); // Modulus (remainders)
-
-// Using + to concatenate strings.
-const firstName = "Jane";
-const lastName = "Doe";
-const fullName = firstName + " " + lastName;
-
-console.log(fullName);
-
-// DRY - Don't repeat yourself!
-
-let counter = 0;
-
-// Increment (number goes up)
-// Increment by 1 with ++
-counter++;
-
-// Increment by larger numbers
-counter = counter + 5;
-counter += 5;
-console.log(counter);
-
-// Decrement (Number goes down)
-counter--;
-counter -= 10;
-console.log(counter);
-
-// Addition assignment (+=):
-let score = 10;
-console.log("Initial score:", score);
-score += 5; // Equivalent to score = score + 5;
-console.log("After adding 5:", score); // 15
-
-// Subtraction assignment (-=):
-score -= 3; // Equivalent to score = score - 3;
-console.log("After subtracting 3:", score); // 12
-
-// Multiplication assignment (*=):
-score *= 2; // Equivalent to score = score * 2;
-console.log("After multiplying by 2:", score); // 24
-
-// Division assignment (/=):
-score /= 4; // Equivalent to score = score / 4;
-console.log("After dividing by 4:", score); // 6
-
-// Remainder assignment (%=):
-score %= 5; // Equivalent to score = score % 5;
-console.log("After modulus 5:", score); // 6 mod 5 equals 1
-
-// Comparison Operators
-
-// These operators compare values and return a boolean (true / false)
-
-console.log(15 > 15); // Greater than
-console.log(15 < 20); // Less than
-console.log(15 >= 20); // Greather than or equal to
-console.log(15 <= 16); // Less than or equal to
-
-console.log(15 == "15"); // Equal to (not taking into account datatype)
-console.log(15 === "15"); // Strictly Equal to (Takes into account datatype)
-
-console.log(15 != "15"); // Not equal to
-console.log(15 !== "15"); // Strictly not equal to
-
-// Typeof (check the datatype in a string)
-console.log(typeof exampleString);
+console.log(greeting);
