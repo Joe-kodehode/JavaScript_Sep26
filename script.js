@@ -1,156 +1,170 @@
-// Conditionals
+// Functions
 
-// Section 1: If / Else if / Else
+// A function is a block of code that only runs when we "call it". It won't run when the page loads. Functions are reusable and dynamic code.
 
-const temperature = 15;
-
-// console log "it's a hot day" if the temperature is 25 or over
-
-if (temperature >= 25) {
-  console.log("It's a hot day");
-} else if (temperature >= 15) {
-  console.log("It's a warm day");
-} else if (temperature > 0) {
-  console.log("It's a bit chilly");
-} else {
-  console.log("it's freezing!");
+// Section 1 - Function declarations and hoisting
+function sayHello() {
+  console.log("Hello");
 }
 
-// Section 2: Logical Operators (AND &&   OR ||)
+// Function call - can be called as many times as we want
+sayHello();
 
-// Using && to make sure 2 conditions are true
-const age = 18;
-const hasLicense = false;
+// Section 2 - Arrow Functions
 
-if (age >= 18 && hasLicense) {
-  console.log("You can drive");
-} else {
-  console.log("No driving for you!");
+const helloArrow = () => {
+  console.log("Hello from the arrow function");
+};
+
+helloArrow();
+
+// Hoisting - Regular functions are "hoisted" to the top when our JS runs. Meaning we can call them before we create them. This is not the case for arrow functions.
+
+// Section 3 - Return statement and Scope
+
+function logMessage() {
+  console.log(
+    "This function logs this message from inside the function when it's called. The function is not retuning any data",
+  );
 }
 
-// Using || to make sure at least one condition is true
-const day = "Hamburger";
+logMessage();
 
-if (day === "Saturday" || day === "Sunday") {
-  console.log("It's the weekend");
-} else if (
-  day === "Monday" ||
-  day === "Tuesday" ||
-  day === "Wednesday" ||
-  day === "Thursday" ||
-  day === "Friday"
-) {
-  console.log("It's a weekday");
-} else {
-  console.log("Error, unknown day detected!");
+// The return keyword lets us send data from inside our function to outside our function. The data will be sent to and will replace the function call.
+
+// As soon as we run the 'return' we exit the function, so code below a return will not run.
+function returnMessage() {
+  const myMessage = "This string is being returned from the function";
+  return myMessage;
 }
 
-// Using both && and || in the same check
+console.log(returnMessage());
 
-// Give the user a discount if they have a referral AND it's their first shop.
+// Scope example
+// Variables created inside functions are only accessable inside that function. Global variables are still accessable anywhere.
+const aNumber = 1;
 
-// Premium members ALWAYS get a discount.
-
-// if they're getting the discount, console.log("You get a discount")
-// if they're not getting a discount, console.log("Full price!")
-
-const referal = true;
-const firstShop = true;
-const premiumMember = false;
-
-if ((referal && firstShop) || premiumMember) {
-  console.log("You get a discount");
-} else {
-  console.log("No discount!");
+function scopeExample() {
+  const anotherNumber = 2;
+  console.log(aNumber);
+  console.log(anotherNumber);
 }
 
-// Section 3: Ternary
+scopeExample();
 
-const isMember = false;
-// let fee;
+// Section 4 - Parameters() and Arguments()
 
-// if (isMember) {
-//   fee = "$5";
-// } else {
-//   fee = "$10";
-// }
+// Example 1 - Hard coding
 
-const fee = isMember ? "$5" : "$10";
-
-console.log(fee);
-
-// Section 4: Switch Statements
-
-const fruit = "Kiwi";
-
-switch (fruit) {
-  case "Apple":
-    console.log("The fruit is an apple");
-    break;
-  case "Banana":
-    console.log("The fruit is a banana");
-    break;
-  case "Strawberry":
-    console.log("The fruit is strawberry");
-    break;
-  default:
-    console.log("Unknown fruit!");
+function add() {
+  return 3 + 4;
 }
 
-// Use if / else if → for complex or varied conditions
-// Use switch → for one variable with many fixed values
+console.log(add());
 
-// Section 5: Truthy and Falsey values
+// Example 2 - Soft coding / Dynamic
 
-const value = "";
-
-if (value) {
-  console.log("This is true!");
-} else {
-  console.log("This is false!");
+function minus(num1, num2) {
+  return num1 - num2;
 }
 
-// True
-// A string with value
-// A positive number
-// A negative number
-// An array with values
-// An empty array
-// An object with key value pairs
-// An empty object
+console.log(minus(10, 5));
+console.log(minus(60, 30));
 
-// False
-// Empty string
-// 0
-// Undefined
-// Null
-// NaN (not a number)
+// Example 3 - Soft coded with template string
+const greeter = (time, name) => {
+  return `Good ${time} ${name}`;
+};
 
-// Section 6: Template String / Template Literal
+console.log(greeter("evening", "Joe"));
+console.log(greeter("morning", "Celina"));
+console.log(greeter("night", "Bill"));
 
-const firstName = "Bob";
-const lastName = "Builderson";
-const city = "Oslo";
-const country = "Norway";
+// Section 5 - Implicit Return in Arrow Functions
+// If we're instantly returning a piece of data from an arrow function, we can delete the {} and return keyword.
+const greeter2 = (time, name) => `Good ${time} ${name}`;
 
-// const greeting =
-//   "Welcome" +
-//   " " +
-//   firstName +
-//   " " +
-//   lastName +
-//   " " +
-//   "from" +
-//   " " +
-//   city +
-//   " " +
-//   country +
-//   " " +
-//   "to my website.";
+console.log(greeter2("afternoon", "Harry"));
 
-// 1. Swap quotations for backticks
-// 2. surround variables with ${}
+// Section 6 - Calculator function with Switch conditional
 
-const greeting = `Welcome ${firstName} ${lastName} from ${city} ${country} to my website`;
+function calculator(num1, num2, operator) {
+  switch (operator) {
+    case "+":
+      return num1 + num2;
+    case "-":
+      return num1 - num2;
+    case "*":
+      return num1 * num2;
+    case "/":
+      return num1 / num2;
+    default:
+      return "Error, invalid operator";
+  }
+}
 
-console.log(greeting);
+// 1. You said we cant have more than 1 return
+// 2. Why aren't we using break?
+
+console.log(calculator(10, 50, "+"));
+console.log(calculator(40, 50, "+"));
+console.log(calculator(30, 20, "-"));
+console.log(calculator(30, 20, "*"));
+console.log(calculator(30, 20, "/"));
+
+// Section 7 - Update a global variable using a function.
+
+// Update a player's health in a game.
+
+let hp = 100;
+
+const updateHp = (amount, direction) => {
+  if (direction === "up") {
+    hp += amount;
+    if (hp > 200) {
+      hp = 200;
+    }
+  } else if (direction === "down") {
+    hp -= amount;
+    if (hp <= 0) {
+      console.log("You died");
+      hp = 100;
+    }
+  } else {
+    console.log("An error has occured");
+  }
+};
+
+updateHp(10, "up"); // pickup small healthpack
+updateHp(50, "up"); // pickup large healthpack
+updateHp(100, "down"); // Big damage
+updateHp(50, "up"); // pickup large healthpack
+updateHp(50, "up"); // pickup large healthpack
+updateHp(50, "up"); // pickup large healthpack
+updateHp(50, "up"); // pickup large healthpack
+updateHp(1000, "down"); // fell off a cliff
+
+// 1. it shouldnt always be 10 ✅
+// 2. it shouldnt always go up ✅
+// 3. If the player's hp would go above 200, set it to 200 ✅
+// 4. If hp goes to 0 or below, console.log("You died") and reset hp to 100 ready for the next game. ✅
+
+console.log(hp);
+
+// Section 8 - Use Template Literals and Ternary in a Function
+
+const fruits = ["Banana", "Apple", "Pear", "Kiwi"];
+
+const checkFruits = (fruit) => {
+  //   if (fruits.includes(fruit)) {
+  //     return `${fruit} is in the array`;
+  //   } else {
+  //     return `${fruit} is not in the array`;
+  //   }
+
+  return `The array does${fruits.includes(fruit) ? "" : "'t"} include ${fruit}`;
+};
+
+console.log(checkFruits("Apple"));
+console.log(checkFruits("Pear"));
+console.log(checkFruits("Hamburger"));
