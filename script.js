@@ -69,4 +69,113 @@ console.log(sortedArray);
 
 // Section 2.1: Converting an Array into a String
 
+console.log(colors);
+console.log(colors.join(" ")); // converts an array into a string with the passed in value appearing between each word
+
 // Section 3: Number Methods
+
+const myNum = 3.497945357;
+
+console.log(myNum.toFixed(2)); // returns the number rounded to the nearest 2 decimals as a string
+console.log(myNum.toExponential()); // returns a string with myNum in exponential notation
+
+// Section 3.1: Converting a number into a string
+console.log(myNum.toString());
+
+// Section 4: Chaining methods together
+
+const rawString = "     JavaScript is fun!    ";
+
+// Remove whitespace from start and end
+// Make it all uppercase
+// swap the word "fun" for "awesome"
+
+const processedString = rawString
+  .trim()
+  .replace("fun", "awesome")
+  .toUpperCase();
+
+console.log(processedString);
+
+// convert our array into a string, all lowercase
+const words = ["HeLLo", "wOrLD"];
+
+const fixedWords = words.join(" ").toLowerCase();
+console.log(fixedWords);
+
+// round a number to the nearest 2 decimal points, turn it into a string and repeat it twice
+
+const exampleNum = 45.034580348;
+
+const convertedNum = exampleNum.toFixed(2).repeat(2);
+
+console.log(convertedNum);
+
+// Bonus - Math
+
+console.log(Math.round(123.56)); // rounds to nearest whole number (Integer)
+
+console.log(Math.ceil(123.45)); // rounds up
+
+console.log(Math.floor(123.99)); // rounds down
+
+// Math.random()
+
+console.log(Math.random()); // gives us a number between 0.00000 - 0.99999
+
+// We want a random number between 0-9
+console.log(Math.floor(Math.random() * 10));
+
+// We want a random number between 1-10
+console.log(Math.floor(Math.random() * 10) + 1);
+
+// We want a random number between 0-100
+console.log(Math.floor(Math.random() * 101));
+
+// We want a random number between 1-100
+console.log(Math.floor(Math.random() * 100) + 1);
+
+const randomNum = Math.floor(Math.random() * 10) + 1;
+
+console.log(randomNum);
+
+// Console log, but Exclude 6
+if (randomNum <= 5 || randomNum >= 7) {
+  console.log("the number is between 1-5 or 7-10");
+}
+
+// Select a random pokemon
+const pokemon = [
+  "pikachu",
+  "diglett",
+  "electrode",
+  "machop",
+  "magikarp",
+  "mew",
+  "blastoise",
+  "vaporeon",
+  "psyduck",
+  "meowth",
+];
+
+const ranIndex = Math.floor(Math.random() * 10);
+
+console.log(pokemon[ranIndex]);
+
+// removing or adding elements to the array
+const pokemon2 = [
+  "pikachu",
+  "diglett",
+  "electrode",
+  "machop",
+  "dugtrio",
+  "mewtwo",
+  "alakazam",
+];
+
+// Dynamic
+const ranIndex2 = Math.floor(Math.random() * pokemon2.length);
+
+console.log(pokemon2[ranIndex2]);
+
+// Break until 13:20
