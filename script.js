@@ -1,134 +1,144 @@
-// Functions, Methods and Math recap
+// Loops
 
-// Section 1: Check if an item is in an array (function, methods, ternary)
+// A loop is a way to repeat code without writing it out multiple times.
 
-const shoppingList = ["milk", "bread", "cheese", "catfood"];
-const gameList = [
-  "Mario Kart",
-  "Elden Ring",
-  "Cyberpunk 2077",
-  "My little pony, island adventure",
-];
+// D.R.Y. - Don't repeat yourself!
 
-// const checkItem = (item, array) => {
-//   if (array.includes(item)) {
-//     return `${item} is in the array`;
-//   } else {
-//     return `${item} is not in the array`;
-//   }
-// };
+// Section 1 - Why do we use loops?
 
-const checkItem = (item, array) =>
-  `${item} is${array.includes(item) ? "" : " not"} in the array`;
+const names = ["Tom", "Eric", "Jessica", "Juliette", "Harry", "Henry"];
 
-console.log(checkItem("milk", shoppingList));
-console.log(checkItem("cheese", shoppingList));
-console.log(checkItem("left sock", shoppingList));
-console.log(checkItem("Mario Kart", gameList));
-console.log(checkItem("Gears of War", gameList));
+console.log(`hello ${names[0]}`);
+console.log(`hello ${names[1]}`);
+console.log(`hello ${names[2]}`);
+console.log(`hello ${names[3]}`);
+console.log(`hello ${names[4]}`);
+console.log(`hello ${names[5]}`);
 
-// 1. make it a ternary instead of if/else ✅
-// 2. make it so we can check a different array too ✅
+// Section 2 - 'for loop'
 
-// Section 2: Convert a Sentence into Kebab-Case
+// where does the loop start?  index 0
+// when does the loop end?     index should always be less than 3
+// what changes each loop?     index goes up by 1
 
-const toKebabCase = (string) => string.replaceAll(" ", "-");
+for (let i = 0; i < names.length; i++) {
+  // code in here runs each loop
+  console.log(`hello ${names[i]}`);
+}
 
-console.log(toKebabCase("my name is joe"));
-console.log(toKebabCase("one two three four five"));
+// We only use i in regular for loops.
 
-// Section 3: Check if a word is a palindrome
+// We can go backwards using a for loop.
+for (let i = 5; i >= 0; i--) {
+  console.log(i);
+}
 
-// For practice, try turning this into an arrow function with implied return & change the if/else to a ternary.
-function isPalindrome(word) {
-  if (word === word.split("").reverse().join("")) {
-    return `${word} is a palindrome`;
-  } else {
-    return `${word} is not a palindrome`;
+// We can increment 5 by more than 1 if we want to.
+for (let i = 0; i <= 100; i += 5) {
+  console.log(i);
+}
+
+// Section 3: Combining Loops with Functions and Methods
+
+function greetEveryone(nameArray) {
+  for (let i = 0; i < nameArray.length; i++) {
+    const name =
+      nameArray[i].trim().charAt(0).toUpperCase() +
+      nameArray[i].trim().slice(1).toLowerCase();
+
+    console.log(`Hello, ${name}`);
   }
 }
 
-console.log(isPalindrome("racecar")); // racecar is a palindrome
-console.log(isPalindrome("apple")); // apple is not a palindrome
-console.log(isPalindrome("kayak"));
-console.log(isPalindrome("level"));
-console.log(isPalindrome("madam"));
-console.log(isPalindrome("coffee"));
+const people = ["alICe", "   bob    ", "chARlIe", "deBBy     "];
 
-// Section 4: Check the length of a string and add "..." if it's too long
+greetEveryone(people);
+// greetEveryone(names);
 
-function shorten(string, maxLength) {
-  if (string.length >= maxLength) {
-    return string.slice(0, maxLength + 1) + "...";
-  } else {
-    return string;
+// Create a function with a loop inside to combine elements in an array to be a string.
+
+const wordsArr = ["Loops", "are", "really", "useful"];
+
+function makeSentenceWithLoop(stringArray) {
+  let sentence = "";
+
+  for (let i = 0; i < stringArray.length; i++) {
+    sentence += stringArray[i];
+    if (i < stringArray.length - 1) {
+      sentence += " ";
+    }
+  }
+
+  return sentence;
+}
+
+console.log(makeSentenceWithLoop(wordsArr));
+
+// Some methods have built-in loops.
+console.log(wordsArr.join(" "));
+
+// Section 4: The 'for of' loop
+
+const colors = ["red", "green", "blue"];
+
+// example with for loop, we can change the start, end and increment. We cant change that in a 'for of' loop
+for (let i = 0; i < colors.length; i++) {
+  console.log(colors[i]);
+}
+
+// A 'for of' loop will loop over an array from the start to the end, hitting each element along the way.
+for (let color of colors) {
+  console.log(color);
+}
+
+// Section 5: The while loop
+// We use while loops when we as the dev don't know when the loop will end.
+
+let count = 0;
+
+while (count <= 5) {
+  console.log(count);
+  count++;
+}
+
+// Number guessing game with a while loop
+
+const secretNum = Math.floor(Math.random() * 10) + 1;
+let guess = 0;
+
+console.log(`psst, the secret number is: ${secretNum}`);
+
+while (guess !== secretNum) {
+  guess++;
+  console.log(`Guessing ${guess}`);
+
+  if (guess === secretNum) {
+    console.log(`Congratulations! The secret number was: ${guess}`);
   }
 }
 
-// Same but as an arrow function
-// const shorten = (string, maxLength) => {
-//     if (string.length >= maxLength) {
-//     return string.slice(0, maxLength + 1) + "...";
-//   } else {
-//     return string;
-//   }
-// }
+// Section 6: Create array with a loop.
 
-console.log(shorten("This string is quite long and could use shortening", 15));
+// Goal: Make a function that generates 10 random numbers between 1-100 and store those 10 numbers in an array.
 
-console.log(shorten("I'm short", 10));
+function makeRandomArray(length, max) {
+  const results = [];
 
-// Section 5: Math random recap
+  for (let i = 0; i < length; i++) {
+    const ranNum = Math.floor(Math.random() * max) + 1; // generate a random number between 1-100
 
-const movieArray = [
-  "The Matrix",
-  "Lord of the Rings",
-  "Star Wars",
-  "Flåklypa Grand Prix",
-  "Bladerunner",
-  "Titanic",
-];
-
-// random number between 0 - length of array
-const randomIndex = Math.floor(Math.random() * movieArray.length);
-
-console.log(randomIndex);
-
-const randomMovie = movieArray[randomIndex];
-
-console.log(randomMovie);
-
-// Section 6: Rock, paper, scissors game (function, switch case, math random)
-
-const rockPaperScissors = (userInput, aiInput) => {
-  switch (userInput + aiInput) {
-    case "rock" + "scissors":
-    case "scissors" + "paper":
-    case "paper" + "rock":
-      return "AI 1 wins";
-    case "scissors" + "rock":
-    case "paper" + "scissors":
-    case "rock" + "paper":
-      return "AI 2 wins";
-    case "scissors" + "scissors":
-    case "paper" + "paper":
-    case "rock" + "rock":
-      return "Draw";
-
-    default:
-      return "Error";
+    // conditional to make sure we dont push a number thats already in the array
+    if (!results.includes(ranNum)) {
+      results.push(ranNum); // pushes that random number into the results array
+    }
   }
-};
 
-const answerArr = ["rock", "paper", "scissors"];
+  return results;
+}
 
-const ranIndex1 = Math.floor(Math.random() * 3);
-const ranIndex2 = Math.floor(Math.random() * 3);
+console.log(makeRandomArray(10, 10));
+console.log(makeRandomArray(50, 75));
+console.log(makeRandomArray(5, 10000));
 
-const aiAnswer1 = answerArr[ranIndex1];
-const aiAnswer2 = answerArr[ranIndex2];
-
-console.log(aiAnswer1);
-console.log(aiAnswer2);
-
-console.log(rockPaperScissors(aiAnswer1, aiAnswer2));
+// 1. We dont always want between 1-100 ✅
+// 2. We dont always want 10 numbers ✅
