@@ -1,159 +1,158 @@
-// Objects
+// Loops & Objects recap
 
-// Section 1: What is an Object?
+// Section 1: Looping through arrays.
 
-// An object is a data-type that stores related data using key-value pairs.
+const fruitNames = ["Apple", "Banana", "Mango", "Grapes", "Pear", "Kiwi"];
 
-const person = {
-  name: "Alice",
-  age: 28,
-  job: "Designer",
-};
-
-console.log(person);
-console.log(person.name); // access with dot notation
-console.log(person["job"]); // access with bracket notation
-
-// Dot vs bracket:
-// - Use dot when you know the key name at code time: person.name
-// - Use brackets when the key is dynamic or not a valid identifier: person[key]
-
-// Section 2: Creating, Modifying and Deleting keys/values
-
-person.hasLicence = true; // create a new key-value pair
-person.job = "CEO"; // modify existing value
-delete person.job; // deletes a key from the object
-
-console.log(person);
-
-// Section 3: Looping through an object using 'for in' loop
-
-// for of = looping over arrays
-// for in = looping over objects
-
-const user = {
-  name: "Joe",
-  age: 38,
-  location: "Stavanger",
-  hobby: "gaming",
-};
-
-for (let key in user) {
-  console.log(key); // key gives us the current key being looped over
-  console.log(user[key]); // user[key] gives us the current value being looped over
+// regular for loop, allows access to start / end / increment
+for (let i = 0; i < fruitNames.length; i++) {
+  console.log(fruitNames[i]);
 }
 
-// Dynamic key access is useful when you don’t know the property name in advance, like when looping through an object or handling user input.
-
-// Section 4: Nested Objects and Arrays
-
-const userData = {
-  firstName: "Olav",
-  lastName: "Hansen",
-  age: 31,
-  isMember: true,
-  hobbies: ["Golf", "Hiking", "Cinema"],
-  address: {
-    streetName: "Solskinnsgaten",
-    streetNumber: 38,
-    postCode: 4050,
-  },
-};
-
-// target the entire object
-console.log(userData);
-
-console.log(userData.lastName);
-console.log(userData.hobbies);
-console.log(userData.hobbies[1]);
-console.log(userData.address.postCode);
-
-// Section 5: Array of Objects // Object Array
-
-const products = [
-  { productName: "Shirt", productId: 5, stock: 32 },
-  { productName: "Pants", productId: 6, stock: 5 },
-  { productName: "Socks", productId: 10, stock: 22 },
-];
-
-console.log(products[0].productName);
-
-// Loop over the products array
-// in each loop, console.log a description of the product
-// loop 1 should console log: "Shirt is id 5 and has 32 in stock"
-// loop 2 should console log: "Pants is id 6 and has 5 in stock"
-// loop 3 should console log: "Socks is id 10 and has 22 in stock"
-
-// Break + mini-task until 13:20
-
-for (let product of products) {
-  console.log(
-    `${product.productName} is id ${product.productId} and has ${product.stock} in stock`,
-  );
+// for of loop, loops over entire array from start to end
+for (let fruit of fruitNames) {
+  console.log(fruit);
 }
 
-// Section 6: More Object Array targeting
+// Section 2: Looping with conditions
 
-const people = [
+const numbers = [12, 5, 8, 3, 44, 130, 22];
+
+for (let number of numbers) {
+  // go to the next loop if the number is less than 10
+  if (number < 10) {
+    continue;
+  }
+
+  // end the loop if the number is over 100
+  if (number > 100) {
+    break;
+  }
+
+  console.log(number);
+}
+
+// Section 3: The While Loop - Useful when we don't know how many loops are needed
+
+// picking a number and guessing a random number between 1-10 until we guess the correct number.
+
+const ourNumber = 5;
+let numOfGuesses = 0;
+let randomGuess = 0;
+
+while (randomGuess !== ourNumber) {
+  numOfGuesses++;
+
+  randomGuess = Math.floor(Math.random() * 10) + 1;
+
+  console.log(`Guessing ${randomGuess}`);
+
+  if (randomGuess === ourNumber) {
+    console.log(
+      `Correct! the number was ${ourNumber} it took ${numOfGuesses} guesses to get it right`,
+    );
+  }
+}
+
+// Section 4: Object recap
+
+const book = {
+  title: "The Hobbit",
+  author: "J.R.R. Tolkien",
+  pages: 310,
+};
+
+console.log(book);
+console.log(book.pages); // dot notation
+console.log(book["title"]); // bracket notation
+
+// Section 5: Looping through an object using a "for in" loop. And using dynamic keys.
+
+// for of loop, loops over an array, gives access to each element one at a time
+// for in loop, lets us loop over an object, gives access to each key, one at a time
+
+const movie = {
+  title: "The Matrix",
+  genre: "Sci-fi",
+  runtime: "3 hours",
+};
+
+for (let key in movie) {
+  console.log(key); // key holds the name of the key being looped over currently
+  console.log(movie[key]); // targets the current key's value
+}
+
+// Section 6: Array of Objects
+
+const fruits = [
   {
-    name: "Thomas",
-    isMember: true,
-    age: 23,
-    hobbies: ["cycling", "football", "pool"],
+    name: "Apple",
+    color: "Red",
+    calories: 52,
+    pricePerKg: 3.5,
+    countryOfOrigin: "USA",
   },
   {
-    name: "Susan",
-    isMember: false,
-    age: 26,
-    hobbies: ["jogging", "travelling", "dancing"],
+    name: "Banana",
+    color: "Yellow",
+    calories: 89,
+    pricePerKg: 1.2,
+    countryOfOrigin: "Ecuador",
   },
   {
-    name: "Monica",
-    isMember: false,
-    age: 21,
-    hobbies: ["skateboarding", "guitar", "concerts"],
+    name: "Orange",
+    color: "Orange",
+    calories: 47,
+    pricePerKg: 2.8,
+    countryOfOrigin: "Spain",
   },
   {
-    name: "Avery",
-    isMember: true,
-    age: 28,
-    hobbies: ["coding", "games", "memes"],
+    name: "Strawberry",
+    color: "Red",
+    calories: 32,
+    pricePerKg: 6.0,
+    countryOfOrigin: "Mexico",
   },
   {
-    name: "Phillip",
-    isMember: true,
-    age: 24,
-    hobbies: ["boxing", "wrestling", "mma"],
+    name: "Mango",
+    color: "Orange",
+    calories: 60,
+    pricePerKg: 4.0,
+    countryOfOrigin: "India",
   },
   {
-    name: "Otto",
-    isMember: true,
-    age: 36,
-    hobbies: ["movies", "cinema", "music"],
+    name: "Grapes",
+    color: "Green",
+    calories: 69,
+    pricePerKg: 2.5,
+    countryOfOrigin: "Italy",
   },
   {
-    name: "Annabelle",
-    isMember: false,
-    age: 30,
-    hobbies: ["makeup"],
-  },
-  {
-    name: "Cathy",
-    isMember: false,
-    age: 18,
-    hobbies: ["design", "drawing", "css", "fashion", "shopping"],
+    name: "Pineapple",
+    color: "Brown",
+    calories: 50,
+    pricePerKg: 3.0,
+    countryOfOrigin: "Costa Rica",
   },
 ];
 
-// Write a loop to loop over our people array
-// each loop, console.log a string about the person.
-// "Cathy is 18 years old, is not a member of our kundeklubb and enjoys design"
+// Describe each fruit.
+// "Pineapple is a Brown fruit from Costa Rica"
 
-for (let person of people) {
-  const member = person.isMember ? "" : " not"; // checks membership and adds " not" if not a member
-  const ranIndex = Math.floor(Math.random() * person.hobbies.length); // generates a random index based on how long their hobby array is
-
+for (let fruit of fruits) {
   console.log(
-    `${person.name} is ${person.age} years old, is${member} a member of our kundeklubb and enjoys ${person.hobbies[ranIndex]}`,
+    `${fruit.name} is a ${fruit.color} fruit from ${fruit.countryOfOrigin}`,
   );
 }
+
+// Section 7: Find the cheapest fruit in the array
+
+let cheapest = Infinity;
+
+for (let fruit of fruits) {
+  if (fruit.pricePerKg < cheapest) {
+    cheapest = fruit.pricePerKg;
+  }
+}
+
+console.log(cheapest);
