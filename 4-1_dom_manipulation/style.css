@@ -1,0 +1,19 @@
+.blue-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.big-text {
+  font-size: 40px;
+}
+
+.dark-mode {
+  background-color: darkslateblue;
+  color: white;
+}
+
+.small-img {
+  width: 300px;
+}
