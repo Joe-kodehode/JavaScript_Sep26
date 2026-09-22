@@ -17,3 +17,19 @@
 .small-img {
   width: 300px;
 }
+
+.green-border {
+  border: green 2px solid;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: aquamarine;
+}
+
+.section-heading {
+  text-decoration: underline;
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -133,3 +133,78 @@ list.append(newItem1, newItem2);
 // Section 7: Removing elements from our page
 const firstListItem = document.querySelector("li");
 list.removeChild(firstListItem);
+
+// Section 8: Parent and Child relationships
+
+console.log(list.parentElement);
+console.log(list.children);
+console.log(list.firstElementChild);
+console.log(list.lastElementChild);
+
+// Section 9: classList Methods
+
+// target our div
+const box = document.querySelector(".box");
+
+// add class
+box.classList.add("green-border");
+box.classList.add("box");
+
+// remove class
+box.classList.remove("green-border");
+
+// toggle class
+box.classList.toggle("green-border");
+
+// check if an element has a specific class - returns true or false
+console.log(box.classList.contains("green-border"));
+
+// Section 10: Creating elements using a loop
+
+// Step 1: Create the element
+// Step 2: Add content/class/attributes to the element
+// Step 3: Put the element on our page
+
+// Create our heading
+const movieHeading = document.createElement("h2");
+
+// Add text to our heading
+movieHeading.textContent = "My Fav Movies!";
+
+// Add a class to our heading
+movieHeading.classList.add("section-heading");
+
+document.body.append(movieHeading);
+
+// Create ul to hold li's
+const movieList = document.createElement("ul");
+movieList.classList.add("movie-list");
+document.body.append(movieList);
+
+// Array of movies
+const favoriteMovies = [
+  "The Matrix",
+  "The Lord of the Rings",
+  "A New Hope",
+  "Empire Strikes Back",
+  "Return of the Jedi",
+  "Resevoir Dogs",
+  "Pulp Fiction",
+  "Kill Bill",
+];
+
+// Loop over array of movies, create an li for each
+
+for (let movie of favoriteMovies) {
+  // create an li
+  const listItem = document.createElement("li");
+
+  // give li text
+  listItem.textContent = movie;
+
+  // give li a class
+  listItem.classList.add("movie-li");
+
+  // put the li in the ul
+  movieList.append(listItem);
+}
